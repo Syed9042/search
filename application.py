@@ -34,10 +34,7 @@ def index():
             print(prod_html)
             commentboxes = prod_html.find_all('div', {'class': "_16PBlm"})
 
-            filename = searchString + ".csv"
-            fw = open(filename, "w")
-            headers = "Product, Customer Name, Rating, Heading, Comment \n"
-            fw.write(headers)
+            
             reviews = []
             for commentbox in commentboxes:
                 try:
@@ -71,7 +68,7 @@ def index():
                 mydict = {"Product": searchString, "Name": name, "Rating": rating, "CommentHead": commentHead,
                           "Comment": custComment}
                 reviews.append(mydict)
-            client = pymongo.MongoClient("mongodb+srv://pwskills:pwskills@cluster0.ln0bt5m.mongodb.net/?retryWrites=true&w=majority")
+            client = pymongo.MongoClient('mongodb+srv://Syed:alism9042@cluster0.mx4avli.mongodb.net/')
             db = client['review_scrap']
             review_col = db['review_scrap_data']
             review_col.insert_many(reviews)
